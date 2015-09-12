@@ -1,2 +1,2 @@
-# renju
-renju
+# Gomoku
+Gomoku Ai
