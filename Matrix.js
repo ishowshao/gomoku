@@ -1,5 +1,3 @@
-console.log('class Matrix');
-
 var Chessboard = require('./Chessboard');
 
 /**
@@ -56,6 +54,41 @@ Matrix.prototype.getCoordinatesByValue = function (value) {
         }
     }
     return result;
+};
+
+/**
+ * @param {Array} schema
+ * @return {Array}
+ */
+Matrix.prototype.findSchema = function (schema) {
+    var coordinates = this.getCoordinatesByValue(1);
+    var has = [];
+    var data = this.data;
+    var length = coordinates.length;
+    var len = schema.length;
+    var coordinate;
+    var item;
+    var match = true;
+    var temp = [];
+    var added;
+    for (var y = 0; y < length; y++) {
+        coordinate = coordinates[y];
+        match = true;
+        temp = [];
+        for (var x = 0; x < len; x++) {
+            item = schema[x];
+            added = [coordinate[0] + item[0], coordinate[1] + item[1]];
+            temp.push(added);
+            if (data[added[0]] && data[added[0]][added[1]] !== item[2]) {
+                match = false;
+                break;
+            }
+        }
+        if (match) {
+            has.push(temp);
+        }
+    }
+    return has;
 };
 
 /**

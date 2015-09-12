@@ -1,4 +1,9 @@
 var Matrix = require('./Matrix');
+
+/**
+ * @class Chessboard
+ * @constructor
+ */
 var Chessboard = function () {
     this.matrix = new Matrix(15);
 };
