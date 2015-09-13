@@ -1,63 +1,48 @@
 var source = [
     {
         data: [1, 1, 1, 1, 1],
-        score: 1000001,
+        score: 1000000,
         direction: 4
     },
     {
         data: [0, 1, 1, 1, 1, 0], // 活四
-        score: 100001,
+        score: 100000,
         direction: 4
     },
     {
         data: [0, 1, 1, 1, 0],
-        score: 10002,
+        score: 11000,
         direction: 4
     },
     {
         data: [0, 1, 1, 0, 1, 0],
-        score: 10001,
+        score: 10000,
         direction: 8
     },
     {
         data: [2, 1, 1, 1, 1, 0], // 冲四
-        score: 1003,
-        direction: 8
-    },
-    {
-        data: [2, 1, 1, 1, 0, 1],
-        score: 1002,
-        direction: 8
-    },
-    {
-        data: [2, 1, 1, 0, 1, 1],
         score: 1001,
         direction: 8
     },
     {
+        data: [2, 1, 1, 1, 0, 1],
+        score: 1000,
+        direction: 8
+    },
+    {
+        data: [2, 1, 1, 0, 1, 1],
+        score: 1000,
+        direction: 8
+    },
+    {
         data: [0, 1, 1, 0],
-        score: 102,
+        score: 100,
         direction: 4
     },
     {
         data: [0, 1, 0, 1, 0],
-        score: 101,
+        score: 100,
         direction: 4
-    },
-    {
-        data: [2, 1, 1, 1, 0],
-        score: 10,
-        direction: 8
-    },
-    {
-        data: [2, 1, 1, 0, 1, 0],
-        score: 10,
-        direction: 8
-    },
-    {
-        data: [2, 1, 1, 0],
-        score: 1,
-        direction: 8
     }
 ];
 var left = function (data) {
@@ -125,7 +110,7 @@ var leftTop = function (data) {
     return result;
 };
 
-var build = function () {
+exports.build = function () {
     var schemas = [];
     source.forEach(function (schema) {
         schemas.push({schema: left(schema['data']), score: schema['score']});
@@ -140,8 +125,4 @@ var build = function () {
         }
     });
     return schemas;
-};
-
-module.exports = {
-    build: build
 };

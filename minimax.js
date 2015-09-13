@@ -1,4 +1,4 @@
-var step = 0;
+var step = 2;
 var miniMax = function (depth, m) {
     if (step % 2 === 0) {
         return max(depth, m);
@@ -11,17 +11,17 @@ var Matrix = require('./Matrix');
 var Chessboard = require('./Chessboard');
 var matrix = new Matrix(15);
 matrix.setValueByCoordinate(8, 8, Chessboard.BLACK);
+matrix.setValueByCoordinate(8, 9, Chessboard.BLACK);
+matrix.setValueByCoordinate(8, 10, Chessboard.BLACK);
 
-var evaluate = function () {
-    return 0;
-};
+var evaluate = require('./evaluate').evaluate;
 
 var count = 0;
 
 var max = function (depth, m) {
     var best = Number.NEGATIVE_INFINITY;
     if (depth <= 0) {
-        return evaluate();
+        return evaluate(m);
     }
     var moves = m.getCoordinatesByValue(0);
     var length = moves.length;
@@ -43,7 +43,7 @@ var max = function (depth, m) {
 var min = function (depth, m) {
     var best = Number.POSITIVE_INFINITY;
     if (depth <= 0) {
-        return evaluate();
+        return -evaluate(m.copy(true));
     }
     var moves = m.getCoordinatesByValue(0);
     var length = moves.length;
@@ -63,6 +63,6 @@ var min = function (depth, m) {
 };
 
 console.time('speed');
-var result = miniMax(3, matrix);
+var result = miniMax(2, matrix);
 console.timeEnd('speed');
 console.log(result, count);

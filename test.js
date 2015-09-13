@@ -1,8 +1,18 @@
-console.time('test');
-var array = [];
-array.length = 1000000;
-for (var i = 0; i < 1000000; i++) {
-    array[i] = 0;
+var Matrix = require('./Matrix');
+var matrix = new Matrix(15);
+matrix.setValueByCoordinate(8, 8, 1);
+matrix.setValueByCoordinate(8, 9, 1);
+matrix.setValueByCoordinate(8, 10, 1);
+
+
+var schemas = require('./Schema2').build();
+
+var value = 0;
+for (var i = 0, length = schemas.length; i < length; i++) {
+    var schema = schemas[i];
+    console.log(schema);
+    var matches = matrix.findSchema(schema.schema);
+    value += matches.length * schema.score;
+    console.log(matches);
 }
-console.timeEnd('test');
-console.log(array);
+console.log(value);

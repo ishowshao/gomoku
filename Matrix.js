@@ -67,19 +67,19 @@ Matrix.prototype.findSchema = function (schema) {
     var length = coordinates.length;
     var len = schema.length;
     var coordinate;
-    var item;
+    var offset;
     var match = true;
     var temp = [];
-    var added;
+    var point;
     for (var y = 0; y < length; y++) {
         coordinate = coordinates[y];
         match = true;
         temp = [];
         for (var x = 0; x < len; x++) {
-            item = schema[x];
-            added = [coordinate[0] + item[0], coordinate[1] + item[1]];
-            temp.push(added);
-            if (data[added[0]] && data[added[0]][added[1]] !== item[2]) {
+            offset = schema[x];
+            point = [coordinate[0] + offset[0], coordinate[1] + offset[1]];
+            temp.push(point);
+            if (data[point[1]] === undefined || (data[point[1]] && data[point[1]][point[0]] !== offset[2])) {
                 match = false;
                 break;
             }
@@ -116,6 +116,20 @@ Matrix.prototype.copy = function (interchange) {
         }
     }
     return matrix;
+};
+
+Matrix.prototype.toString = function () {
+    var size = this.size;
+    var data = this.data;
+    var str = '';
+
+    for (var i = 0; i < size; i++) {
+        for (var j = 0; j < size; j++) {
+            str += data[i][j];
+        }
+        str += '\n';
+    }
+    return str;
 };
 
 module.exports = Matrix;
