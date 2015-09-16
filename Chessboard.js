@@ -15,5 +15,12 @@ Chessboard.prototype.putPiece = function (x, y) {
 Chessboard.EMPTY = 0;
 Chessboard.BLACK = 1;
 Chessboard.WHITE = 2;
+Chessboard.notColor = function (color) {
+    if (color === Chessboard.BLACK) {
+        return Chessboard.WHITE;
+    } else {
+        return Chessboard.BLACK;
+    }
+};
 
 module.exports = Chessboard;

@@ -125,6 +125,11 @@ var leftTop = function (data) {
     return result;
 };
 
+/**
+ * build schemas to all direction
+ *
+ * @returns {Array}
+ */
 var build = function () {
     var schemas = [];
     source.forEach(function (schema) {

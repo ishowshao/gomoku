@@ -118,6 +118,31 @@ Matrix.prototype.copy = function (interchange) {
     return matrix;
 };
 
+/**
+ * 缩减
+ *
+ * @returns {Array}
+ */
+Matrix.prototype.shrink = function () {
+    var minI = this.size - 1;
+    var minJ = this.size - 1;
+    var maxI = 0;
+    var maxJ = 0;
+    var size = this.size;
+    var data = this.data;
+    for (var i = 0; i < size; i++) {
+        for (var j = 0; j < size; j++) {
+            if (data[i][j] !== 0) {
+                minI = (i < minI ? i : minI);
+                minJ = (j < minJ ? j : minJ);
+                maxI = (i > maxI ? i : maxI);
+                maxJ = (j > maxJ ? j : maxJ);
+            }
+        }
+    }
+    return [[minI - 2 > 0 ? minI - 2 : 0, maxI + 2 > size - 1 ? size - 1 : maxI + 2], [minJ - 2 > 0 ? minJ - 2 : 0, maxJ + 2 > size - 1 ? size - 1 : maxJ + 2]];
+};
+
 Matrix.prototype.toString = function () {
     var size = this.size;
     var data = this.data;
