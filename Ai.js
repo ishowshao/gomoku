@@ -56,6 +56,23 @@ Ai.prototype.setColor = function (color) {
     }
 };
 
+/**
+ * 获取白棋第一步走棋位置
+ *
+ * @param {Array} adversaryMove
+ * @returns {Array}
+ */
+Ai.prototype.getWhiteFirstMove = function (adversaryMove) {
+    var x = adversaryMove[0];
+    var y = adversaryMove[1];
+    var choice = [];
+    y > 0 && choice.push([x, y - 1]);
+    y < 14 && choice.push([x, y + 1]);
+    x > 0 && choice.push([x - 1, y]);
+    x < 14 && choice.push([x + 1, y]);
+    return choice[Math.floor(Math.random() * choice.length)];
+};
+
 Ai.prototype.getMyMove = function (adversaryMove) {
     if (this.step === 0) {
         this.step++;
@@ -67,7 +84,7 @@ Ai.prototype.getMyMove = function (adversaryMove) {
         } else {
             // 不是start我就是后手，白棋
             this.setColor(Chessboard.WHITE);
-            var firstMove = [[7, 6], [7, 8], [6, 7], [8, 7]][Math.floor(Math.random() * 4)]; // 直开局
+            var firstMove = this.getWhiteFirstMove(adversaryMove); // 直开局
             this.matrix.setValueByCoordinate(adversaryMove, Chessboard.notColor(this.color));
             this.matrix.setValueByCoordinate(firstMove, this.color);
             return firstMove;
