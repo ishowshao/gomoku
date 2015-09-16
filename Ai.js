@@ -238,7 +238,9 @@ Ai.prototype.getMyMove = function (adversaryMove) {
         }
 
         console.log(myFinalCoordinate);
-        this.matrix.setValueByCoordinate(myFinalCoordinate, this.color);
+        if (myFinalCoordinate[0] !== -1 && myFinalCoordinate[1] !== -1) {
+            this.matrix.setValueByCoordinate(myFinalCoordinate, this.color);
+        }
         return myFinalCoordinate;
     }
 };
