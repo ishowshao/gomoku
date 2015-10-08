@@ -157,4 +157,45 @@ Matrix.prototype.toString = function () {
     return str;
 };
 
+Matrix.prototype.getFour = function (x, y) {
+    var a = '';
+    var b = '';
+    var c = '';
+    var d = '';
+    var x0 = 0;
+    var y0 = 0;
+    var data = this.data;
+    for (var i = 0; i < 9; i++) {
+        // top to bottom
+        x0 = x;
+        y0 = y + (-4 + i);
+        if (x0 >= 0 && x0 <= 14 && y0 >= 0 && y0 <= 14) {
+            a += data[y0][x0];
+            //a += '0';
+        }
+        // top.left to bottom.right
+        x0 = x + (-4 + i);
+        y0 = y + (-4 + i);
+        if (x0 >= 0 && x0 <= 14 && y0 >= 0 && y0 <= 14) {
+            b += data[y0][x0];
+            //b += '0';
+        }
+        // left to right
+        x0 = x + (-4 + i);
+        y0 = y;
+        if (x0 >= 0 && x0 <= 14 && y0 >= 0 && y0 <= 14) {
+            c += data[y0][x0];
+            //c += '0';
+        }
+        // top.right to bottom.left
+        x0 = x + (4 - i);
+        y0 = y + (-4 + i);
+        if (x0 >= 0 && x0 <= 14 && y0 >= 0 && y0 <= 14) {
+            d += data[y0][x0];
+            //d += '0';
+        }
+    }
+    return [a, b, c, d];
+};
+
 module.exports = Matrix;
