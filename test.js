@@ -31,9 +31,15 @@ var matrix = new Matrix(15);
 //console.log(reg.exec('1000010001'), reg.exec('2000010000'), reg.exec('1000010001'));
 //console.log(reg.exec('1000010001'), reg.exec('1000010001'), reg.exec('1000010001'));
 
+var reg = new RegExp('0110');
+var match = '';
 console.time('test');
 for (var i = 0; i < 100000; i++) {
     var four = matrix.getFour(0, 3);
+    reg.exec(four[0]);
+    reg.exec(four[1]);
+    reg.exec(four[2]);
+    match = reg.exec(four[3]);
 }
 console.timeEnd('test');
-console.log(four);
+console.log(four, match);

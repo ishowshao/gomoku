@@ -32,7 +32,12 @@ Matrix.prototype.getValueByCoordinate = function (x, y) {
 
 Matrix.prototype.setValueByCoordinate = function (x, y, value) {
     this.data[y][x] = value;
+    this.lastMove = [x, y, value];
     return this;
+};
+
+Matrix.prototype.getLastMove = function () {
+    return this.lastMove;
 };
 
 /**

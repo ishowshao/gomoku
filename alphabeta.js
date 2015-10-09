@@ -1,3 +1,4 @@
+//var evaluate = require('./evaluate.2').evaluate;
 var evaluate = require('./evaluate').evaluate;
 var MAX_PLAYER = 1;
 var MIN_PLAYER = 2;
@@ -11,9 +12,12 @@ matrix.setValueByCoordinate(8, 10, Chessboard.BLACK);
 
 var count = 0;
 
+var schema = require('./reg').regs;
+
 function alphabeta(matrix, depth, alpha, beta, player) {
     if (depth === 0) {
         return (player === MAX_PLAYER ? evaluate(matrix) : -evaluate(matrix.copy(true)));
+        //return evaluate(matrix, schema);
     }
     var moves = matrix.getCoordinatesByValue(0);
     var i;
@@ -45,6 +49,6 @@ function alphabeta(matrix, depth, alpha, beta, player) {
     }
 }
 console.time('speed');
-var value = alphabeta(matrix, 4, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, MAX_PLAYER);
+var value = alphabeta(matrix, 3, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, MAX_PLAYER);
 console.timeEnd('speed');
 console.log(value, count);
