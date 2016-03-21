@@ -50,6 +50,7 @@ Matrix.prototype.getCoordinatesByValue = function (value) {
     var result = [];
     var data = this.data;
     var length = this.size;
+    //var s = this.shrink();
     for (var y = 0; y < length; y++) {
         var row = data[y];
         for (var x = 0; x < length; x++) {
@@ -58,6 +59,16 @@ Matrix.prototype.getCoordinatesByValue = function (value) {
             }
         }
     }
+    //function shuffleArray(array) {
+    //    for (var i = array.length - 1; i > 0; i--) {
+    //        var j = Math.floor(Math.random() * (i + 1));
+    //        var temp = array[i];
+    //        array[i] = array[j];
+    //        array[j] = temp;
+    //    }
+    //    return array;
+    //}
+    //return shuffleArray(result);
     return result;
 };
 
@@ -170,32 +181,33 @@ Matrix.prototype.getFour = function (x, y) {
     var x0 = 0;
     var y0 = 0;
     var data = this.data;
+    var size = this.size - 1;
     for (var i = 0; i < 9; i++) {
         // top to bottom
         x0 = x;
         y0 = y + (-4 + i);
-        if (x0 >= 0 && x0 <= 14 && y0 >= 0 && y0 <= 14) {
+        if (x0 >= 0 && x0 <= size && y0 >= 0 && y0 <= size) {
             a += data[y0][x0];
             //a += '0';
         }
         // top.left to bottom.right
         x0 = x + (-4 + i);
         y0 = y + (-4 + i);
-        if (x0 >= 0 && x0 <= 14 && y0 >= 0 && y0 <= 14) {
+        if (x0 >= 0 && x0 <= size && y0 >= 0 && y0 <= size) {
             b += data[y0][x0];
             //b += '0';
         }
         // left to right
         x0 = x + (-4 + i);
         y0 = y;
-        if (x0 >= 0 && x0 <= 14 && y0 >= 0 && y0 <= 14) {
+        if (x0 >= 0 && x0 <= size && y0 >= 0 && y0 <= size) {
             c += data[y0][x0];
             //c += '0';
         }
         // top.right to bottom.left
         x0 = x + (4 - i);
         y0 = y + (-4 + i);
-        if (x0 >= 0 && x0 <= 14 && y0 >= 0 && y0 <= 14) {
+        if (x0 >= 0 && x0 <= size && y0 >= 0 && y0 <= size) {
             d += data[y0][x0];
             //d += '0';
         }

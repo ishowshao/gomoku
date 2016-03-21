@@ -57,7 +57,7 @@ exports.regs = [
     {
         max: new RegExp('0110'),
         min: new RegExp('0220'),
-        score: 102
+        score: 103
     },
     {
         max: new RegExp('01010'),
@@ -77,11 +77,21 @@ exports.regs = [
     {
         max: new RegExp('2110'),
         min: new RegExp('1220'),
-        score: 1
+        score: 2
     },
     {
         max: new RegExp('0112'),
         min: new RegExp('0221'),
+        score: 2
+    },
+    {
+        max: new RegExp('12'),
+        min: new RegExp('21'),
+        score: 1
+    },
+    {
+        max: new RegExp('21'),
+        min: new RegExp('12'),
         score: 1
     }
 ];
